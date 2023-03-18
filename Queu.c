@@ -29,10 +29,11 @@ void *push(queu *my_arr, int elem)
     my_arr->start_index = my_arr->mal - my_arr->len;
 }
 
-void *pop(queu *my_arr)
+/*void *pop(queu *my_arr)
 {
     if (my_arr->len != 0)
     {
+        my_arr->mal--;
         my_arr->len--;
         if (my_arr->mal - my_arr->len >= my_arr->empty)
         {
@@ -47,7 +48,7 @@ void *pop(queu *my_arr)
             my_arr->arr = new_arr;
         }
     }
-}
+}*/
 
 int main()
 {
