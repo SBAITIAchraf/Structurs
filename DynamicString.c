@@ -6,9 +6,9 @@ typedef struct
     int *arr;
     int len;
     int mal;
-}DynamicString;
+}list;
 
-void *append(DynamicString *my_arr, int elem)
+void *append(list *my_arr, int elem)
 {
     if (my_arr->len == my_arr->mal)
     {
@@ -28,7 +28,7 @@ void *append(DynamicString *my_arr, int elem)
 int main()
 {
 
-    DynamicString array = {(int *) malloc(array.mal * sizeof(int)), 2, 4};
+    list array = {(int *) malloc(array.mal * sizeof(int)), 2, 4};
     array.arr[0] =2;
     array.arr[1] =47;
 
