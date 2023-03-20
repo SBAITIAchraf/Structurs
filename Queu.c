@@ -72,13 +72,12 @@ int main()
     {
         printf("%d\n", array.arr[array.start_index + i]);
     }
-    printf("\nMal: %d\nLen: %d\nStart: %d", array.mal);
     printf("Stop\n\n");
 
     pop(&array);
     for (int i = 0; i<array.len; i++)
     {
-        printf("%d\n", array.arr[i]);
+        printf("%d\n", array.arr[array.start_index + i]);
     }
     printf("Stop\n\n");
 
@@ -86,7 +85,7 @@ int main()
     push(&array, 254);
     for (int i = 0; i<array.len; i++)
     {
-        printf("%d\n", array.arr[i]);
+        printf("%d\n", array.arr[array.start_index + i]);
     }
     printf("Stop\n\n");
     return 0;

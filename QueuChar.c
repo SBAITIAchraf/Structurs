@@ -14,8 +14,8 @@ void *push(queu *my_arr, char elem)
 {
     if (my_arr->len >= my_arr->mal)
     {
-        int new_mal = my_arr->mal * 2;
-        char *new_arr =(char *) malloc((new_mal + 1) * sizeof(char));
+        int new_mal = (my_arr->mal * 2) + 1;
+        char *new_arr =(char *) malloc((new_mal) * sizeof(char));
         for (char i = 0; i <= my_arr->len; i++)
         {
             new_arr[(new_mal - 1) - i] = my_arr->arr[(my_arr->mal - 1) - i];
@@ -34,12 +34,12 @@ void *pop(queu *my_arr)
     if (my_arr->len != 0)
     {
         my_arr->len--;
-        my_arr->arr[my_arr->len] = '\0';
+        my_arr->arr[my_arr->start_index + my_arr->len] = '\0';
         if (my_arr->mal - my_arr->len >= my_arr->empty)
         {
             my_arr->empty *= 2;
-            int new_mal = my_arr->len;
-            char *new_arr = (char *) malloc((new_mal + 1) * sizeof(char));
+            int new_mal = my_arr->len + 1;
+            char *new_arr = (char *) malloc((new_mal) * sizeof(char));
             for (int i = 0; i <= my_arr->len; i++)
             {
                 new_arr[i] = my_arr->arr[my_arr->start_index + i];
@@ -47,7 +47,7 @@ void *pop(queu *my_arr)
             free(my_arr->arr);
             my_arr->mal = new_mal;
             my_arr->arr = new_arr;
-            my_arr->start_index = my_arr->mal - my_arr->len-1;
+            my_arr->start_index = 0;
         }
     }
 }
@@ -61,17 +61,18 @@ char peak(queu *my_arr)
 char main()
 {
 
-    queu array = { 1, 2, array.mal - array.len - 1, 1, (char *) malloc(array.mal * sizeof(char))};
+    queu array = { 1, 2, array.mal - array.len-1, 1, (char *) malloc(array.mal * sizeof(char))};
 
     array.arr[0] ='A';
     array.arr[1] ='\0';
-    printf("%s\n", array.arr);
+    printf("%s\n", array.arr + array.start_index);
     push(&array, 'B');
-    printf("%s\n", array.arr);
+    printf("%s\n", array.arr + array.start_index);
     push(&array, 'C');
+    printf("%s\n", array.arr + array.start_index);
     pop(&array);
-    printf("%s\n", array.arr);
+    printf("%s\n", array.arr + array.start_index);
     push(&array, 'C');
-    printf("%s\n", array.arr);
+    printf("%s\n", array.arr + array.start_index);
     return 0;
 }
