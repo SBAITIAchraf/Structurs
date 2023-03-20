@@ -46,12 +46,6 @@ void *pop(stack *my_arr)
     }
 }
 
-int peak(stack *my_arr)
-{
-    int elem = my_arr->arr[my_arr->len-1];
-    return elem;
-}
-
 int main()
 {
 
