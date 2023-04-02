@@ -32,39 +32,25 @@ void pop(Node *head)
 
 void delete(Node *head, int elem)
 {
+    Node *next_node = head->next;
     if(head->data == elem)
     {
-        if(head->previous != NULL)
-        {
-            head->previous->next = head->next;
-        }
+
+        head->previous->next = head->next;
+        
         if(head->next != NULL)
         {
             head->next->previous = head->previous;
         }
         free(head);
     }
-    else if(head->next != NULL)
+    if(next_node != NULL)
     {
-        delete(head->next, elem);
+        delete(next_node, elem);
     }
 }
 
 int main()
-{
-    Node header = {5, NULL, NULL, &header};
-    append(&header, 25);
-    append(&header, 75);
-    append(&header, 56);
-    append(&header, 89);
-
-
-    Node *current = &header;
-    do
-    {
-        printf("%d\n", current->data);
-        current = current->next;
-    }while (current != NULL);
-    
+{   
     return 0;
 }
