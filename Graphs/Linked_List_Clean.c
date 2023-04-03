@@ -3,13 +3,13 @@
 
 typedef struct listNode
 {
-    int data;
     struct listNode *next;
     struct listNode *previous;
     struct listNode *last;
+    int data;
 }Node;
 
-void append(Node *head, int elem)
+void append_link(Node *head, int elem)
 {
     Node *new = (Node *) malloc(sizeof(Node));
 
@@ -22,7 +22,7 @@ void append(Node *head, int elem)
 
 }
 
-void pop(Node *head)
+void pop_link(Node *head)
 {
     Node *poped = head->last;
     poped->previous->next = NULL;
@@ -30,7 +30,7 @@ void pop(Node *head)
     free(poped);
 }
 
-void delete(Node *head, int elem)
+void delete_link(Node *head, int elem)
 {
     Node *next_node = head->next;
     if(head->data == elem)

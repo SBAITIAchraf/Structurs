@@ -1,56 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "headers.h"
 
 typedef struct listNode
 {
-    int data;
     struct listNode *next;
     struct listNode *previous;
     struct listNode *last;
+    int data;
 }Node;
 
-void append(Node *head, int elem)
+typedef struct 
 {
-    Node *new = (Node *) malloc(sizeof(Node));
+    int *arr;
+    int len;
+    int mal;
+    int empty;
+}stack;
 
-    new->data = elem;
-    new->next = NULL;
-    
-    head->last->next = new;
-    new->previous = head->last;
-    head->last = new;
-
-}
-
-void pop(Node *head)
+typedef struct 
 {
-    Node *poped = head->last;
-    poped->previous->next = NULL;
-    head->last = poped->previous;
-    free(poped);
-}
+    int *first_slot;
+    int *arr;
+    int len;
+    int mal;
+    int empty;
+}queu;
 
-void delete(Node *head, int elem)
-{
-    Node *next_node = head->next;
-    if(head->data == elem)
-    {
 
-        if(head->previous != NULL)
-        {
-        head->previous->next = head->next;
-        }
-        if(head->next != NULL)
-        {
-            head->next->previous = head->previous;
-        }
-        free(head);
-    }
-    if(next_node != NULL)
-    {
-        delete(next_node, elem);
-    }
-} 
 
 int main(int argc, char *argv[])
 {
@@ -75,6 +52,33 @@ int main(int argc, char *argv[])
         append(nodes[second_node - 1], first_node);
     }
 
+    // DFS Algo
+    int visited[nodesc + 1];
+    queu my_queu = new_q();
+    push_q(&my_queu, nodes[0]->data);
+    while (my_queu.len > 0)
+    {
+        int current_node = peak_q(&my_queu);
+        pop_q(&my_queu);
+         if (visited[current_node] != 1)
+         {
+            visited[current_node] = 1;
+            Node *current_position = nodes[current_node-1]->next;
+            while (current_position != NULL)
+            {
+                if (visited[current_position->data] != 1)
+                {
+                    visited[current_position->data] = 1;
+                    push_q(&my_queu, current_position->data);
+                }
+                current_position = current_position->next;
+            }
+         }
+         
+         
+
+    }
+    
      
 
     // Print Graph

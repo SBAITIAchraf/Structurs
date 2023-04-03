@@ -9,7 +9,7 @@ typedef struct
     int empty;
 }stack;
 
-void *push(stack *my_arr, int elem)
+void push_stck(stack *my_arr, int elem)
 {
     if (my_arr->len >= my_arr->mal)
     {
@@ -26,7 +26,7 @@ void *push(stack *my_arr, int elem)
     my_arr->len++;
 }
 
-void *pop(stack *my_arr)
+void pop_stck(stack *my_arr)
 {
     if (my_arr->len != 0)
     {

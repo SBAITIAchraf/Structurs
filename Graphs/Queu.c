@@ -3,14 +3,14 @@
 
 typedef struct 
 {
+    int *first_slot;
+    int *arr;
     int len;
     int mal;
     int empty;
-    int *arr;
-    int *first_slot;
 }queu;
 
-void *push(queu *my_arr, int elem)
+void push_q(queu *my_arr, int elem)
 {
     if (my_arr->len >= my_arr->mal)
     {
@@ -27,7 +27,7 @@ void *push(queu *my_arr, int elem)
     my_arr->len++;
 }
 
-void *pop(queu *my_arr)
+void pop_q(queu *my_arr)
 {
     if (my_arr->len != 0)
     {
@@ -42,7 +42,7 @@ void *pop(queu *my_arr)
             {
                 new_arr[i] = my_arr->arr[i];
             }
-            free(my_arr->arr);
+            free(my_arr->first_slot);
             my_arr->mal = new_mal;
             my_arr->arr = new_arr;
             my_arr->first_slot = new_arr;
@@ -50,28 +50,14 @@ void *pop(queu *my_arr)
     }
 }
 
-int peak(queu *my_arr)
+int peak_q(queu *my_arr)
 {
     int elem = my_arr->arr[0];
     return elem;
 }
 
-int main()
+queu new_q()
 {
-   queu my_q = {0, 1, 1,(int *) malloc(my_q.mal * sizeof(int)), my_q.arr};
-   push(&my_q, 5);
-   push(&my_q, 25);
-   push(&my_q, 34);
-   push(&my_q, 9);
-   for (int i = 0; i<my_q.len; i++)
-   {
-    printf("%d\n", my_q.arr[i]);
-   }
-   printf("\n");
-   pop(&my_q);
-   pop(&my_q);
-   for (int i = 0; i<my_q.len; i++)
-   {
-    printf("%d\n", my_q.arr[i]);
-   }
+    queu my_q = {(int *) malloc(my_q.mal * sizeof(int)), my_q.first_slot, 0, 1, 1};
+    return my_q;
 }

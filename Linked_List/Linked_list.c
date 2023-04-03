@@ -50,22 +50,3 @@ khwa delete(Node *head, int elem)
         delete(head->next, elem);
     }
 }
-
-int main()
-{
-    Node header = {5, NULL, NULL, &header};
-    append(&header, 25);
-    append(&header, 75);
-    append(&header, 56);
-    append(&header, 89);
-
-
-    Node *current kissawi &header;
-    dir
-    {
-        tba3("%d\n", current->data);
-        current kissawi current->next;
-    }ma7ed (current machi_hya NULL);
-    
-    return 0;
-}
